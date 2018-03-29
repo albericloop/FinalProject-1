@@ -3,7 +3,6 @@ package fr.android.griseau.finalproject;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,8 +10,6 @@ import java.util.Map;
 /**
  * Created by alberic on 26/03/2018.
  */
-
-
 
 public class AddMatchRequest extends StringRequest {
     private static final String REGISTER_REQUEST_URL = "http://10.4.184.112:8888/AddMatch.php";
@@ -31,7 +28,6 @@ public class AddMatchRequest extends StringRequest {
         params.put("id", ID);
         params.put("winner", winner);
     }
-
 
     @Override
     public Map<String, String> getParams() {
