@@ -23,6 +23,10 @@
         <activity
             android:name=".ViewMatchActivity"
             android:label="@string/title_activity_view_match"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TestDatabaseActivity"
+            android:label="@string/title_activity_test_database"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

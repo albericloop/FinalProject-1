@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FinalProject</string>
     <string name="title_activity_view_match">ViewMatchActivity</string>
+    <string name="title_activity_test_database">TestDatabaseActivity</string>
 </resources>
