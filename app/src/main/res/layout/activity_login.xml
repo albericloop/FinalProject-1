@@ -42,6 +42,11 @@
             android:layout_height="wrap_content"
             android:onClick="onClickRegister"
             android:text="Register" />
+        <CheckBox
+            android:id="@+id/simpleCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remember my mail?"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

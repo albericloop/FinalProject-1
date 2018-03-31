@@ -43,19 +43,19 @@ public class BDDMatch {
             return comment;
         }
 
-    public String getPlayer1() {
+        public String getPlayer1() {
         return team1;
     }
 
-    public void setPlayer1(String player1) {
+        public void setPlayer1(String player1) {
         this.team1 = player1;
     }
 
-    public String getPlayer2() {
+        public String getPlayer2() {
         return team2;
     }
 
-    public void setPlayer2(String player2) {
+        public void setPlayer2(String player2) {
         this.team2 = player2;
     }
 
@@ -63,30 +63,36 @@ public class BDDMatch {
 
 
 
-    public int getScore1() {
-        return valueOf(score1);
+        public int getScore1() {
+            return Integer.valueOf(score1);
+        }
+
+        public int getScore2() {
+            return Integer.valueOf(score2);
+        }
+
+    public void setScore1(String score1) {
+        this.score1 = score1;
     }
 
-    public int getScore2() {
-        return valueOf(score1);
+    public void setScore2(String score2) {
+        this.score2 = score2;
     }
 
+        public int getWinner() {
+            if(valueOf(score1)>valueOf(score2)){
+                return 1;
+            }else{
+                return 2;
 
-    public int getWinner() {
+            }
 
-        if(valueOf(score1)>valueOf(score2)){
-
-            return 1;
-        }else{
-            return 2;
 
         }
 
+
+        public void setWinner(String winner) {
+            this.winner = winner;
         }
 
-
-    public void setWinner(int winner) {
-        this.winner = String.valueOf(winner);
-    }
-
-    }
+        }

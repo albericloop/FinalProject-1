@@ -50,17 +50,17 @@ public class FragmentSeeMatch extends Fragment {
             @Override
             public void onResponse(String response) {
                 try {
-                    System.out.println(response);
                     JSONArray jsonResponse = new JSONArray(response);
-                    List<Match> list = new ArrayList<>();
-                    for (int i=0; i<jsonResponse.length(); i++)
-                    {
-                        JSONObject object = new JSONObject(jsonResponse.getString(i));
-                        list.add(new Match(object.getString("team1"), object.getString("team2"), object.getInt("winner"), object.getInt("score1"), object.getInt("score2")));
-                    }
-                    MatchAdapter adapter = new MatchAdapter(getContext(), list);
-                    listMatch.setAdapter(adapter);
-                    if(jsonResponse.length()==0){
+                    if(jsonResponse.length()!=0) {
+
+                        List<Match> list = new ArrayList<>();
+                        for (int i = 0; i < jsonResponse.length(); i++) {
+                            JSONObject object = new JSONObject(jsonResponse.getString(i));
+                            list.add(new Match(object.getString("team1"), object.getString("team2"), object.getInt("winner"), object.getInt("score1"), object.getInt("score2")));
+                        }
+                        MatchAdapter adapter = new MatchAdapter(getContext(), list);
+                        listMatch.setAdapter(adapter);
+                    }else{
 
                         List<Match> list2 = new ArrayList<>();
                         BDDMatchesDataSource b= new BDDMatchesDataSource(getContext());
@@ -71,7 +71,6 @@ public class FragmentSeeMatch extends Fragment {
 
                         for (int i=0; i<bddmatches.size(); i++)
                         {
-                            JSONObject object = new JSONObject(jsonResponse.getString(i));
 
                             list2.add(new Match(
                                     bddmatches.get(i).getPlayer1(),
@@ -81,7 +80,7 @@ public class FragmentSeeMatch extends Fragment {
                                     bddmatches.get(i).getScore2()));
 
                         }
-                        adapter = new MatchAdapter(getContext(), list);
+                        MatchAdapter adapter = new MatchAdapter(getContext(), list2);
                         listMatch.setAdapter(adapter);
 
 

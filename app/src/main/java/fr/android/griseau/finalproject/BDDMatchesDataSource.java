@@ -107,7 +107,13 @@ public class BDDMatchesDataSource {
     private BDDMatch cursorToBDDMatch(Cursor cursor) {
         BDDMatch bddmatch = new BDDMatch();
         bddmatch.setId(cursor.getLong(0));
-        bddmatch.setBDDMatch(cursor.getString(1));
+        bddmatch.setPlayer1(cursor.getString(3));
+        bddmatch.setPlayer2(cursor.getString(4));
+        bddmatch.setWinner(cursor.getString(5));
+        bddmatch.setScore1(cursor.getString(6));
+        bddmatch.setScore2(cursor.getString(7));
+
+
         return bddmatch;
     }
 }
