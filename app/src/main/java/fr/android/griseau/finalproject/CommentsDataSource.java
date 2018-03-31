@@ -42,7 +42,7 @@ public class CommentsDataSource {
         dbHelper.close();
     }
 
-    public Match createMatch(String comment) {
+    public BDDMatch createBDDMatch(String comment) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_DB_ID, comment);
         values.put(MySQLiteHelper.COLUMN_DATE, comment);
@@ -60,39 +60,39 @@ public class CommentsDataSource {
                 allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
                 null, null, null);
         cursor.moveToFirst();
-        Match newMatch = cursorToMatch(cursor);
+        BDDMatch newBDDMatch = cursorToBDDMatch(cursor);
         cursor.close();
-        return newMatch;
+        return newBDDMatch;
     }
 
-    public void deleteComment(Match match) {
-        long id = match.getId();
+    public void deleteComment(BDDMatch bddmatch) {
+        long id = bddmatch.getId();
         System.out.println("Comment deleted with id: " + id);
         database.delete(MySQLiteHelper.TABLE_MATCHES, MySQLiteHelper.COLUMN_ID
                 + " = " + id, null);
     }
 
-    public List<Match> getAllMatches() {
-        List<Match> matches = new ArrayList<Match>();
+    public List<BDDMatch> getAllBDDMatches() {
+        List<BDDMatch> bddmatches = new ArrayList<BDDMatch>();
 
         Cursor cursor = database.query(MySQLiteHelper.TABLE_MATCHES,
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            Match match = cursorToMatch(cursor);
-            matches.add(match);
+            BDDMatch bddmatch = cursorToBDDMatch(cursor);
+            bddmatches.add(bddmatch);
             cursor.moveToNext();
         }
         // assurez-vous de la fermeture du curseur
         cursor.close();
-        return matches;
+        return bddmatches;
     }
 
-    private Match cursorToMatch(Cursor cursor) {
-        Match match = new Match();
-        match.setId(cursor.getLong(0));
-        match.setMatch(cursor.getString(1));
-        return match;
+    private BDDMatch cursorToBDDMatch(Cursor cursor) {
+        BDDMatch bddmatch = new BDDMatch();
+        bddmatch.setId(cursor.getLong(0));
+        bddmatch.setBDDMatch(cursor.getString(1));
+        return bddmatch;
     }
 }
