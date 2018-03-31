@@ -79,8 +79,6 @@ public class FragmentAddMatch extends Fragment {
 
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(getActivity().getApplicationContext(), "réponse"+response+"", Toast.LENGTH_LONG).show();
-
                         try {
 
                             JSONObject jsonResponse = new JSONObject(response);
@@ -136,7 +134,6 @@ public class FragmentAddMatch extends Fragment {
 
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String formattedDate = df.format(c);
-                //Toast.makeText(getApplicationContext(), ""+formattedDate+"", Toast.LENGTH_LONG).show();
                 String date = String.valueOf(formattedDate);
 
                 AddMatchRequest addMatchRequest = new AddMatchRequest(Team1, s1, Team2, s2, id, date, winner, getString(R.string.ip_address), responseListener);

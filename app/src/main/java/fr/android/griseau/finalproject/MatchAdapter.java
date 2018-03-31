@@ -29,12 +29,16 @@ public class MatchAdapter extends ArrayAdapter<Match> {
             viewHolder.player1 = (TextView) convertView.findViewById(R.id.tvPlayer1);
             viewHolder.player2 = (TextView) convertView.findViewById(R.id.tvPlayer2);
             viewHolder.winner = (TextView) convertView.findViewById(R.id.tvWinner);
+            viewHolder.score1 = (TextView) convertView.findViewById(R.id.tvScore1);
+            viewHolder.score2 = (TextView) convertView.findViewById(R.id.tvScore2);
         }
 
         Match match = getItem(position);
 
         viewHolder.player1.setText(match.getPlayer1());
         viewHolder.player2.setText(match.getPlayer2());
+        viewHolder.score1.setText(String.valueOf(match.getScore1()));
+        viewHolder.score2.setText(String.valueOf(match.getScore2()));
         if (match.getWinner() == 1)
             viewHolder.winner.setText(match.getPlayer1());
         else
@@ -45,5 +49,7 @@ public class MatchAdapter extends ArrayAdapter<Match> {
         public TextView player1;
         public TextView player2;
         public TextView winner;
+        public TextView score1;
+        public TextView score2;
     }
 }

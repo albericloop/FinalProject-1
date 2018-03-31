@@ -55,7 +55,7 @@ public class FragmentSeeMatch extends Fragment {
                     for (int i=0; i<jsonResponse.length(); i++)
                     {
                         JSONObject object = new JSONObject(jsonResponse.getString(i));
-                        list.add(new Match(object.getString("team1"), object.getString("team2"), object.getInt("winner")));
+                        list.add(new Match(object.getString("team1"), object.getString("team2"), object.getInt("winner"), object.getInt("score1"), object.getInt("score2")));
                     }
                     MatchAdapter adapter = new MatchAdapter(getContext(), list);
                     listMatch.setAdapter(adapter);
