@@ -22,6 +22,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -135,12 +137,36 @@ public class FragmentAddMatch extends Fragment {
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String formattedDate = df.format(c);
                 String date = String.valueOf(formattedDate);
+                String DBID = md5(team1+date+team2+winner);
 
-                AddMatchRequest addMatchRequest = new AddMatchRequest(Team1, s1, Team2, s2, id, date, winner, getString(R.string.ip_address), responseListener);
+                AddMatchRequest addMatchRequest = new AddMatchRequest(DBID, Team1, s1, Team2, s2, id, date, winner, "",getString(R.string.ip_address), responseListener);
+
                 RequestQueue queue = Volley.newRequestQueue(getContext());
                 queue.add(addMatchRequest);
+                BDDMatchesDataSource b = new BDDMatchesDataSource(getContext());
+                b.createBDDMatch(DBID, Team1,  s1,  Team2,  s2,  id,  date,  winner,  "");
+
             }
         });
+    }
+
+    public String md5(String s) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i=0; i<messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+
+            return hexString.toString();
+        }catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -59,8 +60,34 @@ public class FragmentSeeMatch extends Fragment {
                     }
                     MatchAdapter adapter = new MatchAdapter(getContext(), list);
                     listMatch.setAdapter(adapter);
+                    if(jsonResponse.length()==0){
+
+                        List<Match> list2 = new ArrayList<>();
+                        BDDMatchesDataSource b= new BDDMatchesDataSource(getContext());
+                        List<BDDMatch> bddmatches = new ArrayList<>();
+
+                        bddmatches=b.getAllBDDMatches();
+                        Toast.makeText(getContext(), "msg msg"+bddmatches.size()+"", Toast.LENGTH_SHORT).show();
+
+                        for (int i=0; i<bddmatches.size(); i++)
+                        {
+                            JSONObject object = new JSONObject(jsonResponse.getString(i));
+
+                            list2.add(new Match(
+                                    bddmatches.get(i).getPlayer1(),
+                                    bddmatches.get(i).getPlayer2(),
+                                    bddmatches.get(i).getWinner(),
+                                    bddmatches.get(i).getScore1(),
+                                    bddmatches.get(i).getScore2()));
+
+                        }
+                        adapter = new MatchAdapter(getContext(), list);
+
+
+                    }
 
                 } catch (JSONException e) {
+
                     e.printStackTrace();
                 }
             }

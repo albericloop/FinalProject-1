@@ -14,7 +14,7 @@ package fr.android.griseau.finalproject;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
-    public static final String TABLE_MATCHES = "comments";
+    public static final String TABLE_MATCHES = "matches";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_DB_ID = "_dbid";
     public static final String COLUMN_DATE = "date";
@@ -27,7 +27,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ADDERCOACHID = "adderCoachId";
 
     private static final String DATABASE_NAME = "android.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Commande sql pour la création de la base de données
     private static final String DATABASE_CREATE = "create table "
@@ -48,7 +48,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase database) {
+    public void onCreate(
+            SQLiteDatabase database) {
+
+
         database.execSQL(DATABASE_CREATE);
     }
 

@@ -13,21 +13,21 @@ import java.util.List;
 import java.util.Random;
 
 public class TestDatabaseActivity extends ListActivity {
-    private CommentsDataSource datasource;
-/*
+    private BDDMatchesDataSource datasource;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_database);
 
-        datasource = new CommentsDataSource(this);
+        datasource = new BDDMatchesDataSource(this);
         datasource.open();
 
-        List<Comment> values = datasource.getAllComments();
+        List<BDDMatch> values = datasource.getAllBDDMatches();
 
         // utilisez SimpleCursorAdapter pour afficher les
         // éléments dans une ListView
-        ArrayAdapter<Comment> adapter = new ArrayAdapter<Comment>(this,
+        ArrayAdapter<BDDMatch> adapter = new ArrayAdapter<BDDMatch>(this,
                 android.R.layout.simple_list_item_1, values);
         setListAdapter(adapter);
     }
@@ -36,21 +36,21 @@ public class TestDatabaseActivity extends ListActivity {
     // des boutons déclarés dans main.xml
     public void onClick(View view) {
         @SuppressWarnings("unchecked")
-        ArrayAdapter<Comment> adapter = (ArrayAdapter<Comment>) getListAdapter();
-        Comment comment = null;
+        ArrayAdapter<BDDMatch> adapter = (ArrayAdapter<BDDMatch>) getListAdapter();
+        BDDMatch bddmatch = null;
         switch (view.getId()) {
             case R.id.add:
-                String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
+                String[] bddmatches = new String[] { "Cool", "Very nice", "Hate it" };
                 int nextInt = new Random().nextInt(3);
                 // enregistrer le nouveau commentaire dans la base de données
-                comment = datasource.createComment(comments[nextInt]);
-                adapter.add(comment);
+                //bddmatch = datasource.createBDDMatch(bddmatches[nextInt]);
+                adapter.add(bddmatch);
                 break;
             case R.id.delete:
                 if (getListAdapter().getCount() > 0) {
-                    comment = (Comment) getListAdapter().getItem(0);
-                    //datasource.deleteComment(comment);
-                    adapter.remove(comment);
+                    bddmatch = (BDDMatch) getListAdapter().getItem(0);
+                    datasource.deleteBDDMatch(bddmatch);
+                    adapter.remove(bddmatch);
                 }
                 break;
         }
@@ -67,5 +67,5 @@ public class TestDatabaseActivity extends ListActivity {
     protected void onPause() {
         datasource.close();
         super.onPause();
-    }*/
+    }
 }

@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.android.volley.Response;
+
 import org.w3c.dom.Comment;
 
 import java.util.ArrayList;
@@ -15,12 +17,13 @@ import java.util.List;
  * Created by alberic on 29/03/2018.
  */
 
-public class CommentsDataSource {
+public class BDDMatchesDataSource {
 
     // Champs de la base de données
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
     private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
+            MySQLiteHelper.COLUMN_DB_ID,
             MySQLiteHelper.COLUMN_DATE,
             MySQLiteHelper.COLUMN_TEAM1,
             MySQLiteHelper.COLUMN_TEAM2,
@@ -30,7 +33,8 @@ public class CommentsDataSource {
             MySQLiteHelper.COLUMN_LOCATION,
             MySQLiteHelper.COLUMN_ADDERCOACHID };
 
-    public CommentsDataSource(Context context) {
+    public BDDMatchesDataSource(Context context) {
+
         dbHelper = new MySQLiteHelper(context);
     }
 
@@ -42,30 +46,40 @@ public class CommentsDataSource {
         dbHelper.close();
     }
 
-    public BDDMatch createBDDMatch(String comment) {
-        ContentValues values = new ContentValues();
-        values.put(MySQLiteHelper.COLUMN_DB_ID, comment);
-        values.put(MySQLiteHelper.COLUMN_DATE, comment);
-        values.put(MySQLiteHelper.COLUMN_TEAM1, comment);
-        values.put(MySQLiteHelper.COLUMN_TEAM2, comment);
-        values.put(MySQLiteHelper.COLUMN_WINNER, comment);
-        values.put(MySQLiteHelper.COLUMN_SCORE1, comment);
-        values.put(MySQLiteHelper.COLUMN_SCORE2, comment);
-        values.put(MySQLiteHelper.COLUMN_LOCATION, comment);
-        values.put(MySQLiteHelper.COLUMN_ADDERCOACHID, comment);
+    public BDDMatch createBDDMatch(String DBID, String team1, String score1, String team2, String score2, String ID, String date, String winner, String location){
 
-        long insertId = database.insert(MySQLiteHelper.TABLE_MATCHES, null,
+            open();
+
+            ContentValues values = new ContentValues();
+        values.put(MySQLiteHelper.COLUMN_DB_ID, DBID);
+        values.put(MySQLiteHelper.COLUMN_DATE, date);
+        values.put(MySQLiteHelper.COLUMN_TEAM1, team1);
+        values.put(MySQLiteHelper.COLUMN_TEAM2, team2);
+        values.put(MySQLiteHelper.COLUMN_WINNER, winner);
+        values.put(MySQLiteHelper.COLUMN_SCORE1, score1);
+        values.put(MySQLiteHelper.COLUMN_SCORE2, score2);
+        values.put(MySQLiteHelper.COLUMN_LOCATION, location);
+        values.put(MySQLiteHelper.COLUMN_ADDERCOACHID, ID);
+
+
+        long insertId = database.
+                insert(
+                        MySQLiteHelper.TABLE_MATCHES,
+                null,
                 values);
+
         Cursor cursor = database.query(MySQLiteHelper.TABLE_MATCHES,
                 allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
                 null, null, null);
         cursor.moveToFirst();
+
         BDDMatch newBDDMatch = cursorToBDDMatch(cursor);
         cursor.close();
+        close();
         return newBDDMatch;
     }
 
-    public void deleteComment(BDDMatch bddmatch) {
+    public void deleteBDDMatch(BDDMatch bddmatch) {
         long id = bddmatch.getId();
         System.out.println("Comment deleted with id: " + id);
         database.delete(MySQLiteHelper.TABLE_MATCHES, MySQLiteHelper.COLUMN_ID
@@ -73,8 +87,9 @@ public class CommentsDataSource {
     }
 
     public List<BDDMatch> getAllBDDMatches() {
-        List<BDDMatch> bddmatches = new ArrayList<BDDMatch>();
 
+        List<BDDMatch> bddmatches = new ArrayList<BDDMatch>();
+        open();
         Cursor cursor = database.query(MySQLiteHelper.TABLE_MATCHES,
                 allColumns, null, null, null, null, null);
 
