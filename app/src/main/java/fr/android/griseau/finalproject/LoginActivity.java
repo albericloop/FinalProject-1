@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String PREFS_MAIL = "PREF_MAIL";
 
     SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
