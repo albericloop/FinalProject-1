@@ -65,6 +65,7 @@ public class FragmentSeeMatch extends Fragment {
                 }
             }
         };
+
         ViewMatchRequest viewRequest = new ViewMatchRequest(ID, getString(R.string.ip_address), responseListener);
         RequestQueue queue = Volley.newRequestQueue(getContext());
         queue.add(viewRequest);
