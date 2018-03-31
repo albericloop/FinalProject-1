@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("ID", ID);
                                 intent.putExtra("Surname", surname);
+                                /*Intent intent = new Intent(LoginActivity.this, ViewMatchActivity.class);
+                                intent.putExtra("ID", ID);*/
                                 LoginActivity.this.startActivity(intent);
                             }else
                             {
