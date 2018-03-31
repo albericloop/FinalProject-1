@@ -82,6 +82,7 @@ public class FragmentSeeMatch extends Fragment {
 
                         }
                         adapter = new MatchAdapter(getContext(), list);
+                        listMatch.setAdapter(adapter);
 
 
                     }
