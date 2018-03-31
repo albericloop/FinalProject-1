@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("ID", ID);
                                 intent.putExtra("Surname", surname);
+                                /*Intent intent = new Intent(LoginActivity.this, ViewMatchActivity.class);
+                                intent.putExtra("ID", ID);*/
                                 LoginActivity.this.startActivity(intent);
                             }else
                             {
@@ -62,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 };
 
-                LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
+                LoginRequest loginRequest = new LoginRequest(email, password, getString(R.string.ip_address), responseListener);
                 RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                 queue.add(loginRequest);
             }

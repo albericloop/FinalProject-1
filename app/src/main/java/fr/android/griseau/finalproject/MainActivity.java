@@ -71,12 +71,13 @@ public class MainActivity extends AppCompatActivity {
                         {
                             Toast.makeText(getApplicationContext(), "match ajouté", Toast.LENGTH_LONG).show();
                             Intent intent= new Intent(MainActivity.this, ViewMatchActivity.class);
+                            intent.putExtra("ID", ID);
                             MainActivity.this.startActivity(intent);
 
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(), "match ajouté", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "match non ajouté", Toast.LENGTH_LONG).show();
                             AlertDialog.Builder builder = new AlertDialog.Builder((MainActivity.this));
                             builder.setMessage("Register failed")
                                     .setNegativeButton("Retry", null)
@@ -112,14 +113,14 @@ public class MainActivity extends AppCompatActivity {
 
 
             Date c = Calendar.getInstance().getTime();
-            System.out.println("Current time => " + c);
+            //System.out.println("Current time => " + c);
 
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             String formattedDate = df.format(c);
-            Toast.makeText(getApplicationContext(), ""+formattedDate+"", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), ""+formattedDate+"", Toast.LENGTH_LONG).show();
             String date = String.valueOf(formattedDate);
 
-            AddMatchRequest addMatchRequest = new AddMatchRequest(Team1, s1, Team2, s2, id, date, winner, responseListener);
+            AddMatchRequest addMatchRequest = new AddMatchRequest(Team1, s1, Team2, s2, id, date, winner, getString(R.string.ip_address), responseListener);
             RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
             queue.add(addMatchRequest);
         }

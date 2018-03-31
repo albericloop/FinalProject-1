@@ -14,11 +14,11 @@ import java.util.Map;
  */
 
 public class RegisterRequest extends StringRequest {
-    private static final String REGISTER_REQUEST_URL = "http://10.4.184.112:8888/Register.php";
+    private static final String REGISTER_REQUEST_URL = "Register.php";
     private Map<String, String> params;
 
-    public RegisterRequest(String email, String password, String surname, String name, Response.Listener<String> listener){
-        super(Method.POST, REGISTER_REQUEST_URL, listener, null);
+    public RegisterRequest(String email, String password, String surname, String name, String IP, Response.Listener<String> listener){
+        super(Method.POST, IP+REGISTER_REQUEST_URL, listener, null);
 
         params=new HashMap<>();
         params.put("email", email);

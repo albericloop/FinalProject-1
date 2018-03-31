@@ -47,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "réponse", Toast.LENGTH_LONG).show();
 
                         try {
-
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
 
@@ -81,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.e("VOLLEY", "ERROR");
                     }
                 };
-                RegisterRequest registerRequest = new RegisterRequest(email, password, surname, name, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(email, password, surname, name, getString(R.string.ip_address), responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
             }

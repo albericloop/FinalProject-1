@@ -11,11 +11,11 @@ import java.util.Map;
  */
 
 public class LoginRequest extends StringRequest {
-    private static final String LOGIN_REQUEST_URL = "http://10.4.184.112:8888/login.php";
+    private static final String LOGIN_REQUEST_URL = "Login.php";
     private Map<String, String> params;
 
-    public LoginRequest(String email, String password, Response.Listener<String> listener){
-        super(Method.POST, LOGIN_REQUEST_URL, listener, null);
+    public LoginRequest(String email, String password, String IP, Response.Listener<String> listener){
+        super(Method.POST, IP + LOGIN_REQUEST_URL, listener, null);
         params=new HashMap<>();
         params.put("email", email);
         params.put("password", password);
