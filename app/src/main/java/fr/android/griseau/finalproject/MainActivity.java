@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), ""+formattedDate+"", Toast.LENGTH_LONG).show();
             String date = String.valueOf(formattedDate);
 
-            AddMatchRequest addMatchRequest = new AddMatchRequest(Team1, s1, Team2, s2, id, date, winner, responseListener);
+            AddMatchRequest addMatchRequest = new AddMatchRequest(Team1, s1, Team2, s2, id, date, winner, getString(R.string.ip_address), responseListener);
             RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
             queue.add(addMatchRequest);
         }

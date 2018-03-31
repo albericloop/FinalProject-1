@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 };
 
-                LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
+                LoginRequest loginRequest = new LoginRequest(email, password, getString(R.string.ip_address), responseListener);
                 RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                 queue.add(loginRequest);
             }

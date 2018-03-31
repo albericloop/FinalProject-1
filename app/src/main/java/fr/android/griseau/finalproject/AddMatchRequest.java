@@ -15,11 +15,11 @@ import java.util.Map;
 
 
 public class AddMatchRequest extends StringRequest {
-    private static final String REGISTER_REQUEST_URL = "http://10.4.184.112:8888/AddMatch.php";
+    private static final String REGISTER_REQUEST_URL = "AddMatch.php";
     private Map<String, String> params;
 
-    public AddMatchRequest(String team1, String score1, String team2, String score2, String ID, String date, String winner, Response.Listener<String> listener){
-        super(Method.POST, REGISTER_REQUEST_URL, listener, null);
+    public AddMatchRequest(String team1, String score1, String team2, String score2, String ID, String date, String winner, String IP, Response.Listener<String> listener){
+        super(Method.POST, IP + REGISTER_REQUEST_URL, listener, null);
 
         params=new HashMap<>();
 
