@@ -19,14 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity" />
         <activity
-            android:name=".ViewMatchActivity"
-            android:label="@string/title_activity_view_match"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".AddMatchActivity"
-            android:label="@string/title_activity_add_match"
+            android:name=".NavActivity"
+            android:label="@string/title_activity_nav"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

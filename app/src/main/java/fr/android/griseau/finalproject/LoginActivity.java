@@ -44,11 +44,14 @@ public class LoginActivity extends AppCompatActivity {
                                 int ID = jsonResponse.getInt("userID");
                                 String surname = jsonResponse.getString("userSurname");
 
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                /*Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("ID", ID);
-                                intent.putExtra("Surname", surname);
+                                intent.putExtra("Surname", surname);*/
                                 /*Intent intent = new Intent(LoginActivity.this, ViewMatchActivity.class);
                                 intent.putExtra("ID", ID);*/
+                                Intent intent = new Intent(LoginActivity.this, NavActivity.class);
+                                intent.putExtra("ID", ID);
+                                intent.putExtra("Surname", surname);
                                 LoginActivity.this.startActivity(intent);
                             }else
                             {
